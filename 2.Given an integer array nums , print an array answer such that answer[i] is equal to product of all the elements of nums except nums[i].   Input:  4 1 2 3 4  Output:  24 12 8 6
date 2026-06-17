@@ -1,0 +1,30 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+nt main() {
+    int n;
+    if (!(cin >> n)) return 0;
+
+    vector<int> nums(n);
+    for (int i = 0; i < n; ++i) {
+        cin >> nums[i];
+    }
+
+    vector<int> answer(n, 1);
+    int leftProduct = 1;
+    for (int i = 0; i < n; ++i) {
+        answer[i] = leftProduct;
+        leftProduct *= nums[i];
+    }
+    int rightProduct = 1;
+    for (int i = n - 1; i >= 0; --i) {
+        answer[i] *= rightProduct;
+        rightProduct *= nums[i];
+    }
+    for (int i = 0; i < n; ++i) {
+        cout << answer[i] << (i == n - 1 ? "" : " ");
+    }
+    cout << endl;
+
+    return 0;
+}
